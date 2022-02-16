@@ -11,6 +11,7 @@ alias df='df --human-readable'
 alias du='du --human-readable'
 
 export EDITOR=code
+export GIT_EDITOR="code --wait"
 
 export CLICOLOR=1
 export LSCOLORS=gxfxcxdxbxegedabagacad
