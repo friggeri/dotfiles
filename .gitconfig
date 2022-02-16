@@ -1,0 +1,19 @@
+[core]
+  excludesfile = .gitignore
+  quotepath = false
+  editor = code --wait
+[color]
+  ui = auto
+  branch = auto
+  diff = auto
+  interactive = auto
+  status = auto
+[pager]
+  diff =
+[push]
+  default = simple
+[include]
+  path = .gitconfig_local
+[user]
+  email = adrien@friggeri.net
+  name = Adrien Friggeri

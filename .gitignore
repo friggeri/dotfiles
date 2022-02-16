@@ -1,0 +1,6 @@
+.DS_Store
+*/tags
+vim/undo
+vim/doc/tags
+vim/.netrwhist
+*.logs
