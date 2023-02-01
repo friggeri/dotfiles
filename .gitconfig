@@ -1,3 +1,5 @@
 [user]
   name = Adrien Friggeri
   email = adrien@friggeri.net
+[init]
+	defaultBranch = main

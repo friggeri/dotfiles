@@ -15,6 +15,7 @@ export GIT_EDITOR="code --wait"
 
 export CLICOLOR=1
 export LSCOLORS=gxfxcxdxbxegedabagacad
+export PATH=$HOME/.local/bin:$PATH
 
 autoload -U compinit; compinit
 setopt MENU_COMPLETE
@@ -24,7 +25,5 @@ zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}
 zstyle ':completion:*' menu select
 zstyle ':completion:*:rm:*' ignore-line yes
 
-eval "$(starship init zsh)"
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+eval "$(starship init zsh)"
