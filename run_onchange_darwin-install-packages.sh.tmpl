@@ -22,36 +22,48 @@ fi
 echo "Updating Homebrew..."
 brew update
 
-{{ if .packages.darwin.taps -}}
+{{ $commonTaps := .packages.darwin.common.taps | default list -}}
+{{ $machineTaps := index .packages.darwin .machineType "taps" | default list -}}
+{{ $allTaps := concat $commonTaps $machineTaps | uniq -}}
+{{ if $allTaps -}}
 # Install taps
 echo "📦 Installing Homebrew taps..."
-{{ range .packages.darwin.taps -}}
+{{ range $allTaps -}}
 brew tap "{{ . }}" || true
 {{ end -}}
 {{ end -}}
 
-{{ if or .packages.darwin.brews .packages.darwin.casks -}}
+{{ $commonBrews := .packages.darwin.common.brews | default list -}}
+{{ $machineBrews := index .packages.darwin .machineType "brews" | default list -}}
+{{ $allBrews := concat $commonBrews $machineBrews | uniq -}}
+{{ $commonCasks := .packages.darwin.common.casks | default list -}}
+{{ $machineCasks := index .packages.darwin .machineType "casks" | default list -}}
+{{ $allCasks := concat $commonCasks $machineCasks | uniq -}}
+{{ if or $allBrews $allCasks -}}
 # Install formulae and casks
-echo "📦 Installing Homebrew packages..."
+echo "📦 Installing Homebrew packages ({{ .machineType }} machine)..."
 brew bundle --verbose --file=/dev/stdin <<EOF
-{{ range .packages.darwin.brews -}}
+{{ range $allBrews -}}
 brew {{ . | quote }}
 {{ end -}}
-{{ range .packages.darwin.casks -}}
+{{ range $allCasks -}}
 cask {{ . | quote }}
 {{ end -}}
 EOF
 {{ end -}}
 
-{{ if .packages.darwin.mas -}}
+{{ $commonMas := .packages.darwin.common.mas | default list -}}
+{{ $machineMas := index .packages.darwin .machineType "mas" | default list -}}
+{{ $allMas := concat $commonMas $machineMas | uniq -}}
+{{ if $allMas -}}
 # Install Mac App Store apps
 if ! command -v mas &> /dev/null; then
     echo "Installing mas CLI..."
     brew install mas
 fi
 
-echo "🛍️ Installing Mac App Store apps..."
-{{ range .packages.darwin.mas -}}
+echo "🛍️ Installing Mac App Store apps ({{ .machineType }} machine)..."
+{{ range $allMas -}}
 mas install {{ .id }} || echo "Failed to install {{ .name }} ({{ .id }})"
 {{ end -}}
 {{ end -}}

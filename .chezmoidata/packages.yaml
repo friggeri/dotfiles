@@ -1,79 +1,99 @@
 packages:
   darwin:
-    taps:
-    brews:
-      # Version control
-      - gh
+    # Common packages for all machines
+    common:
+      taps:
+      brews:
+        # Version control
+        - gh
 
-      # Build tools
-      - lcov
+        # Build tools
+        - lcov
 
-      # Languages and runtimes
-      - node
-      - python@3.13
+        # Languages and runtimes
+        - node
+        - python@3.13
 
-      # Container and virtualization
-      - docker
-      - docker-buildx
-      - docker-completion
-      - colima
-      - lima
+        # Networking and services
+        - curl
+        - wget
 
-      # Networking and services
-      - cloudflared
-      - curl
-      - wget
-      - nmap
+        # Text processing and utilities
+        - difftastic
+        - tree
+        - yq
+        - jq
+        - ripgrep
+        - fd
 
-      # Text processing and utilities
-      - difftastic
-      - tree
-      - yq
-      - jq
-      - ripgrep
-      - fd
+        # System libraries
+        - openssl@3
+        - sqlite
 
-      # Security
-      - certbot
+        # Container and virtualization
+        - docker
+        - docker-buildx
+        - docker-completion
+        - colima
+        - lima
 
-      # System libraries
-      - openssl@3
-      - sqlite
+        # Networking and services
+        - cloudflared
 
-      # Other utilities
-      - chezmoi
-      - starship
-      - rsync
+        # Other utilities
+        - chezmoi
+        - starship
+        - rsync
+        - nano
 
-    # Homebrew casks (GUI applications)
-    casks:
-      # Development
-      - visual-studio-code
-      - ghostty
+      # Common casks
+      casks:
+        # Communication
+        - zoom
 
-      # Communication
-      - discord
-      - zoom
-      - mimestream
+        # Development
+        - visual-studio-code
+        - ghostty
 
-      # Productivity
-      - 1password
-      - 1password-cli
-      - rectangle
+        # Productivity
+        - 1password
+        - 1password-cli
+        - rectangle
 
-    # Mac App Store apps (requires mas)
-    mas:
-      - id: 1544743900
-        name: Hush Nag Blocker
-      - id: 1662217862
-        name: Wipr 2
-      - id: 1502839586
-        name: Hand Mirror
-      - id: 937984704
-        name: Amphetamine
-      - id: 409183694
-        name: Keynote
-      - id: 409203825
-        name: Numbers
-      - id: 409201541
-        name: Pages
+      # Common Mac App Store apps
+      mas:
+        - id: 1544743900
+          name: Hush Nag Blocker
+        - id: 1662217862
+          name: Wipr 2
+        - id: 1502839586
+          name: Hand Mirror
+        - id: 937984704
+          name: Amphetamine
+        - id: 1569813296
+          name: 1Password for Safari
+
+    # Personal machine specific packages
+    personal:
+      taps:
+      brews:
+      casks:
+        # Communication
+        - discord
+        - mimestream
+      mas:
+
+    # Work machine specific packages
+    work:
+      taps:
+      brews:
+      casks:
+      mas:
+        - id: 985367838
+          name: Microsoft Outlook
+        - id: 490179405
+          name: Okta Verify
+        - id: 803453959
+          name: Slack
+        - id: 1553936137
+          name: Azure VPN Client

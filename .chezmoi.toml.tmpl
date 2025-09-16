@@ -1,7 +1,9 @@
 {{- $codespaces:= env "CODESPACES" | not | not -}}
+{{- $machineType := promptChoiceOnce . "machineType" "Machine type" (list "personal" "work") -}}
 sourceDir = {{ .chezmoi.sourceDir | quote }}
 
 [data]
     name = "Adrien Friggeri"
     email = "adrien@friggeri.net"
     codespaces = {{ $codespaces }}
+    machineType = {{ $machineType | quote }}
