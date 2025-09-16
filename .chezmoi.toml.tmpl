@@ -6,4 +6,8 @@ sourceDir = {{ .chezmoi.sourceDir | quote }}
     name = "Adrien Friggeri"
     email = "adrien@friggeri.net"
     codespaces = {{ $codespaces }}
-    machineType = {{ $machineType | quote }}
+    {{- if $codespaces }}
+        machineType = "codespaces"
+    {{- else }}
+        machineType = {{ $machineType | quote }}
+    {{- end }}
