@@ -1,0 +1,106 @@
+#!/usr/bin/env zsh
+
+# =====================================
+# Core Aliases (Cross-platform)
+# =====================================
+alias ll='ls -l'
+alias la='ls -a'
+alias lla='ls -la'
+alias less='less --quiet'
+alias df='df -h'
+alias du='du -h'
+
+# Platform-specific ls coloring
+{{- if eq .chezmoi.os "darwin" }}
+alias ls='ls -hG'
+export CLICOLOR=1
+export LSCOLORS=gxfxcxdxbxegedabagacad
+{{- else }}
+alias ls='ls -h --color=auto'
+{{- end }}
+
+# =====================================
+# Environment Variables
+# =====================================
+export EDITOR=code
+export GIT_EDITOR="code --wait"
+
+# Add local bin to PATH
+export PATH="$HOME/.local/bin:$PATH"
+
+{{- if eq .chezmoi.os "darwin" }}
+# =====================================
+# macOS-specific Configuration
+# =====================================
+
+# Homebrew configuration
+if type brew &>/dev/null; then
+    FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+    export HOMEBREW_NO_ENV_HINTS=TRUE
+fi
+
+# macOS-specific paths
+if [[ -d "$HOME/Library/Python/3.9/bin" ]]; then
+    export PATH="$PATH:$HOME/Library/Python/3.9/bin"
+fi
+
+# pnpm configuration for macOS
+if [[ -d "$HOME/Library/pnpm" ]]; then
+    export PNPM_HOME="$HOME/Library/pnpm"
+    case ":$PATH:" in
+        *":$PNPM_HOME:"*) ;;
+        *) export PATH="$PNPM_HOME:$PATH" ;;
+    esac
+fi
+{{- end }}
+
+{{- if eq .chezmoi.os "linux" }}
+# =====================================
+# Linux-specific Configuration
+# =====================================
+
+# Common Linux development paths
+if [[ -d "/usr/local/go/bin" ]]; then
+    export PATH="$PATH:/usr/local/go/bin"
+fi
+
+# pnpm configuration for Linux
+if [[ -d "$HOME/.local/share/pnpm" ]]; then
+    export PNPM_HOME="$HOME/.local/share/pnpm"
+    case ":$PATH:" in
+        *":$PNPM_HOME:"*) ;;
+        *) export PATH="$PNPM_HOME:$PATH" ;;
+    esac
+fi
+
+{{- end }}
+
+# =====================================
+# Zsh Completion System
+# =====================================
+autoload -U compinit && compinit
+setopt MENU_COMPLETE
+
+# Completion configuration
+zstyle ':completion:*' completer _extensions _complete _approximate
+zstyle ':completion:*' complete true
+zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' \
+    'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' \
+    'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' \
+    'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
+zstyle ':completion:*' menu select
+zstyle ':completion:*:rm:*' ignore-line yes
+
+# =====================================
+# pnpm Completion
+# =====================================
+if command -v pnpm &>/dev/null; then
+    eval "$(pnpm completion zsh)"
+fi
+
+# =====================================
+# Starship Prompt
+# =====================================
+if command -v starship &>/dev/null; then
+    eval "$(starship init zsh)"
+fi
