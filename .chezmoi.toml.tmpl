@@ -1,0 +1,7 @@
+{{- $codespaces:= env "CODESPACES" | not | not -}}
+sourceDir = {{ .chezmoi.sourceDir | quote }}
+
+[data]
+    name = "Adrien Friggeri"
+    email = "adrien@friggeri.net"
+    codespaces = {{ $codespaces }}

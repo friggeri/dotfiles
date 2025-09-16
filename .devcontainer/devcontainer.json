@@ -10,6 +10,17 @@
 			"package": "@anthropic-ai/claude-code",
 			"version": "latest"
 		}
+	},
+
+	// Mount the repo directly to chezmoi's expected source directory
+	"workspaceMount": "source=${localWorkspaceFolder},target=/home/vscode/.local/share/chezmoi,type=bind",
+	"workspaceFolder": "/home/vscode/.local/share/chezmoi",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"tamasfe.even-better-toml"
+			]
+		}
 	}
 
 	// Features to add to the dev container. More info: https://containers.dev/features.

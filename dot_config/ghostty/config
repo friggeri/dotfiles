@@ -11,5 +11,5 @@ unfocused-split-opacity=1
 quit-after-last-window-closed=true
 macos-titlebar-style=tabs
 
-theme=light:Prism Light,dark:Prism Dark
+theme=light:PVC Light,dark:PVC Dark
 keybind = shift+enter=text:\n
