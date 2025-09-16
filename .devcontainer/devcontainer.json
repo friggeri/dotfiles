@@ -1,11 +1,10 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/ubuntu
 {
-	"name": "Ubuntu",
+	"name": "Debian",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/base:noble",
+	"image": "mcr.microsoft.com/devcontainers/base:bookworm",
 	"features": {
-		"ghcr.io/devcontainers/features/github-cli:1": {},
 		"ghcr.io/devcontainers-extra/features/npm-package:1": {
 			"package": "@anthropic-ai/claude-code",
 			"version": "latest"
@@ -13,15 +12,15 @@
 	},
 
 	// Mount the repo directly to chezmoi's expected source directory
-	"workspaceMount": "source=${localWorkspaceFolder},target=/home/vscode/.local/share/chezmoi,type=bind",
-	"workspaceFolder": "/home/vscode/.local/share/chezmoi",
+	//"workspaceMount": "source=${localWorkspaceFolder},target=/home/vscode/.local/share/chezmoi,type=bind",
+	//"workspaceFolder": "/home/vscode/.local/share/chezmoi",
 	"customizations": {
 		"vscode": {
 			"extensions": [
 				"tamasfe.even-better-toml"
 			]
 		}
-	}
+	},
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
@@ -36,5 +35,6 @@
 	// "customizations": {},
 
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
-	// "remoteUser": "root"
+	"remoteUser": "vscode",
+	"containerUser": "vscode"
 }
