@@ -1,4 +1,4 @@
-{{- $devcontainer:= env "REMOTE_CONTAINERS" | not | not -}}
+{{- $devcontainer:= or (env "REMOTE_CONTAINERS" | not | not) (eq (env "CODESPACES") "true") -}}
 sourceDir = {{ .chezmoi.sourceDir | quote }}
 
 [data]
