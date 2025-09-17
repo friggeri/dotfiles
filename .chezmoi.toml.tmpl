@@ -1,5 +1,4 @@
 {{- $devcontainer:= env "REMOTE_CONTAINERS" | not | not -}}
-{{- $machineType := promptChoiceOnce . "machineType" "Machine type" (list "personal" "work") -}}
 sourceDir = {{ .chezmoi.sourceDir | quote }}
 
 [data]
@@ -9,5 +8,6 @@ sourceDir = {{ .chezmoi.sourceDir | quote }}
     {{- if $devcontainer }}
         machineType = "devcontainer"
     {{- else }}
+        {{- $machineType := promptChoiceOnce . "machineType" "Machine type" (list "personal" "work") -}}
         machineType = {{ $machineType | quote }}
     {{- end }}
