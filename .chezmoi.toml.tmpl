@@ -6,8 +6,8 @@ sourceDir = {{ .chezmoi.sourceDir | quote }}
     email = "adrien@friggeri.net"
     devcontainer = {{ $devcontainer }}
     {{- if $devcontainer }}
-        machineType = "devcontainer"
+    machineType = "devcontainer"
     {{- else }}
-        {{- $machineType := promptChoiceOnce . "machineType" "Machine type" (list "personal" "work") -}}
-        machineType = {{ $machineType | quote }}
+    {{- $machineType := promptChoiceOnce . "machineType" "Machine type" (list "personal" "work") }}
+    machineType = {{ $machineType | quote }}
     {{- end }}
