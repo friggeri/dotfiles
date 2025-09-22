@@ -1,0 +1,39 @@
+#!/bin/sh
+{{- if .devcontainer }}
+# Install difftastic only in devcontainers
+if ! command -v difft >/dev/null 2>&1; then
+    echo "Installing difftastic..."
+
+    # Determine architecture
+    ARCH=$(uname -m)
+    case "$ARCH" in
+        x86_64)
+            ARCH_SUFFIX="x86_64-unknown-linux-gnu"
+            ;;
+        aarch64)
+            ARCH_SUFFIX="aarch64-unknown-linux-gnu"
+            ;;
+        *)
+            echo "Unsupported architecture: $ARCH"
+            exit 1
+            ;;
+    esac
+
+    # Get latest release URL
+    LATEST_URL=$(curl -s https://api.github.com/repos/Wilfred/difftastic/releases/latest | grep "browser_download_url.*$ARCH_SUFFIX.tar.gz" | cut -d '"' -f 4)
+
+    if [ -z "$LATEST_URL" ]; then
+        echo "Failed to find difftastic download URL"
+        exit 1
+    fi
+
+    # Download and extract
+    curl -L "$LATEST_URL" | tar xz -C /tmp
+
+    # Move binary to /usr/local/bin
+    sudo mv /tmp/difft /usr/local/bin/
+    sudo chmod +x /usr/local/bin/difft
+
+    echo "Difftastic installed successfully"
+fi
+{{- end }}

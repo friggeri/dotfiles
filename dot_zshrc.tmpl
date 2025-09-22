@@ -92,6 +92,13 @@ zstyle ':completion:*' menu select
 zstyle ':completion:*:rm:*' ignore-line yes
 
 # =====================================
+# Docker Completion
+# =====================================
+if [[ -d "$HOME/.docker/completion" ]]; then
+    fpath=($HOME/.docker/completion $fpath)
+fi
+
+# =====================================
 # pnpm Completion
 # =====================================
 if command -v pnpm &>/dev/null; then

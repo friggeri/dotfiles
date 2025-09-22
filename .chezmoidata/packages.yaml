@@ -34,7 +34,6 @@ packages:
         - docker
         - docker-buildx
         - docker-completion
-        - colima
         - lima
 
         # Networking and services
@@ -59,6 +58,9 @@ packages:
         - 1password
         - 1password-cli
         - rectangle
+
+        # Container
+        - docker-desktop
 
       # Common Mac App Store apps
       mas:
