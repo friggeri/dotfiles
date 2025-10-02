@@ -44,6 +44,7 @@ packages:
         - starship
         - rsync
         - nano
+        - artginzburg/tap/sudo-touchid
 
       # Common casks
       casks:
