@@ -19,7 +19,6 @@ packages:
         - wget
 
         # Text processing and utilities
-        - difftastic
         - tree
         - yq
         - jq
