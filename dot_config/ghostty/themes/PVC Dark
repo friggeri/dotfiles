@@ -1,22 +1,27 @@
-palette = 0=#fcfbfc
-palette = 1=#ec6f6b
-palette = 2=#bcfc4f
-palette = 3=#fae67a
-palette = 4=#9168f6
-palette = 5=#ea3a79
-palette = 6=#80c9fa
-palette = 7=#020202
-palette = 8=#fcfbfc
-palette = 9=#ec6f6b
-palette = 10=#bcfc4f
-palette = 11=#fae67a
-palette = 12=#9168f6
-palette = 13=#ea3a79
-palette = 14=#80c9fa
-palette = 15=#020202
-background = #242627
+# PVC Dark
+# Derived from Span iOS design tokens (app/DESIGN_SYSTEM.md), chroma boosted
+# Normal slots = UserColor accent, bright slots = UserColor base
+# (in dark mode the base is lighter than the accent — base pops more on dark bg)
+# Cyan is a teal hue-shifted from sapphire (~232° → ~190°)
+palette = 0=#161616
+palette = 1=#b01825
+palette = 2=#7a7700
+palette = 3=#c06800
+palette = 4=#007abc
+palette = 5=#6e40b0
+palette = 6=#007060
+palette = 7=#666666
+palette = 8=#d4d4d4
+palette = 9=#cc2030
+palette = 10=#908e00
+palette = 11=#e07800
+palette = 12=#0095d5
+palette = 13=#8050d8
+palette = 14=#008c78
+palette = 15=#fafafa
+background = #252728
 foreground = #fafafa
-cursor-color = #f4bd51
-cursor-text = #fafafa
-selection-background = #f4bd51
-selection-foreground = #242627
+cursor-color = #ffaa00
+cursor-text = #252728
+selection-background = #ffaa00
+selection-foreground = #252728
